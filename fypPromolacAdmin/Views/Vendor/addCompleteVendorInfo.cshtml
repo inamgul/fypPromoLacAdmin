@@ -1,0 +1,46 @@
+﻿@model fypPromolacAdmin.Models.vendorViewModel
+
+@{
+    ViewBag.Title = "addCompleteVendorInfo";
+}
+
+<h2>addCompleteVendorInfo</h2>
+<script src="~/Scripts/jquery-3.3.1.js"></script>
+<script src="~/Scripts/bootstrap.js"></script>
+
+@using (Html.BeginForm("AddCompleteVendorInfo","vendor",FormMethod.Post))
+{
+
+    foreach (var item in Model.package_details)
+    {
+<div>
+    <h1>Package #</h1>@item.packagesId
+    <br />
+    <span>Package Name:</span> @item.packageName
+    <br />
+    <span>Messages Allowed:</span> @item.messagesAllowed
+    <br />
+    <span>Duration</span> @item.packageDurationDays
+    <br />
+    <span>SubUsers Allowed</span> @item.subUsersAllowed
+    <br />
+    <span>Description:</span> @item.packageDescription
+    <br /><br />
+    <button onclick="return packageValue(@item.packagesId)">Select</button>
+</div>
+    }
+
+    @Html.HiddenFor(model => model.vendorDealTaken)
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" class="btn btn-default" />
+        </div>
+    </div>
+}
+
+<script type="text/javascript">
+    function packageValue(x) {
+        document.getElementById('vendorDealTaken').value = x
+        return false;
+    }
+</script>

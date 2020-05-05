@@ -1,0 +1,70 @@
+﻿@model IEnumerable<fypPromolacAdmin.Models.vendorViewModel>
+
+@{
+    ViewBag.Title = "viewAllVendors";
+}
+
+<h2>viewAllVendors</h2>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.firstName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.lastName)
+            </th>
+
+
+            <th>
+                @Html.DisplayNameFor(model => model.vendorUserName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.vendorDealTaken)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.registerTimestamp)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.vendorCompanyName)
+            </th>
+        </tr>
+
+    </thead>
+    @foreach (var item in Model)
+    {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.firstName)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.lastName)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.vendorUserName)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.vendorDealTaken)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.registerTimestamp)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.vendorCompanyName)
+    </td>
+    <td>
+        @foreach (var x in item.vendorAreaDetail)
+        {
+
+            <span style="">@x.areaNames</span><br />
+        }
+    </td>
+
+</tr>
+    }
+    </table>
+         
+            <p>
+                @Html.ActionLink("Edit", "Edit", new {  }) |
+                @Html.ActionLink("Back to List", "Index")
+            </p>
