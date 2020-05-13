@@ -77,3 +77,4 @@ C:\Users\DELL\source\repos\fypPromolacAdmin\fypPromolacAdmin\bin\Microsoft.CodeD
 C:\Users\DELL\source\repos\fypPromolacAdmin\fypPromolacAdmin\obj\Debug\fypPromolacAdmin.csproj.CopyComplete
 C:\Users\DELL\source\repos\fypPromolacAdmin\fypPromolacAdmin\obj\Debug\fypPromolacAdmin.dll
 C:\Users\DELL\source\repos\fypPromolacAdmin\fypPromolacAdmin\obj\Debug\fypPromolacAdmin.pdb
+C:\Users\DELL\source\repos\fypPromolacAdmin\fypPromolacAdmin\obj\Debug\fypPromolacAdmin.csprojAssemblyReference.cache

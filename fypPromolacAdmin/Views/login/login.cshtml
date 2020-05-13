@@ -1,4 +1,4 @@
-﻿@model fypPromolacAdmin.Models.vendorViewModel
+﻿@model fypPromolacAdmin.Models.adminModel
 
 @{
     ViewBag.Title = "login";
@@ -36,16 +36,16 @@
 
 
             <div class="col-md-4">
-                @Html.EditorFor(model => model.vendorUserName, new { htmlAttributes = new { @class = "form-control", @placeholder = "username" } })
-                @Html.ValidationMessageFor(model => model.vendorUserName, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.username, new { htmlAttributes = new { @class = "form-control", @placeholder = "username" } })
+                @Html.ValidationMessageFor(model => model.username, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
             <div class="col-md-3"></div>
             <div class="col-md-4">
-                @Html.PasswordFor(model => model.vendorPassword, new { @placeholder = "password", @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.vendorPassword, "", new { @class = "text-danger" })
+                @Html.PasswordFor(model => model.password_, new { @placeholder = "password", @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.password_, "", new { @class = "text-danger" })
             </div>
         </div>
 

@@ -20,7 +20,7 @@
                 @Html.DisplayNameFor(model => model.vendorUserName)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.vendorDealTaken)
+                @Html.DisplayNameFor(model => model.vendorPackageTaken)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.registerTimestamp)
@@ -44,7 +44,7 @@
         @Html.DisplayFor(modelItem => item.vendorUserName)
     </td>
     <td>
-        @Html.DisplayFor(modelItem => item.vendorDealTaken)
+        @Html.DisplayFor(modelItem => item.vendorPackageTaken)
     </td>
     <td>
         @Html.DisplayFor(modelItem => item.registerTimestamp)
@@ -52,19 +52,18 @@
     <td>
         @Html.DisplayFor(modelItem => item.vendorCompanyName)
     </td>
+    
+   
     <td>
-        @foreach (var x in item.vendorAreaDetail)
-        {
-
-            <span style="">@x.areaNames</span><br />
-        }
+        <button type="button" class="btn btn-info btn-lg">@Html.ActionLink("Edit", "EditVendor", new {id=item.vendorId })</button>
     </td>
 
 </tr>
     }
-    </table>
-         
-            <p>
-                @Html.ActionLink("Edit", "Edit", new {  }) |
-                @Html.ActionLink("Back to List", "Index")
-            </p>
+</table>
+
+
+<p>
+    @Html.ActionLink("Edit", "Edit", new { }) 
+    @Html.ActionLink("Back to List", "Index")
+</p>

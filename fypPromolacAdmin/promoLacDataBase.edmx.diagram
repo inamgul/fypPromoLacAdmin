@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="ae5bc1d090634c818990ffd83f8b4be1" Name="Diagram1">
+      <Diagram DiagramId="ae5bc1d090634c818990ffd83f8b4be1" Name="Diagram1" ZoomLevel="84">
         <EntityTypeShape EntityType="promoLacDbModel.area" Width="1.5" PointX="3" PointY="11" IsExpanded="true" />
         <EntityTypeShape EntityType="promoLacDbModel.areaAssigned" Width="1.5" PointX="5.25" PointY="6.125" IsExpanded="true" />
         <EntityTypeShape EntityType="promoLacDbModel.areaAssignedSUser" Width="1.5" PointX="7.5" PointY="11.5" IsExpanded="true" />
@@ -16,20 +16,20 @@
         <EntityTypeShape EntityType="promoLacDbModel.subUser" Width="1.5" PointX="5.25" PointY="11" IsExpanded="true" />
         <EntityTypeShape EntityType="promoLacDbModel.sysdiagram" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="promoLacDbModel.userPackage" Width="1.5" PointX="8.25" PointY="6.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="promoLacDbModel.vendor" Width="1.5" PointX="3" PointY="4.25" IsExpanded="true" />
         <AssociationConnector Association="promoLacDbModel.FK__areaAssig__areaI__0B91BA14" ManuallyRouted="false" />
         <AssociationConnector Association="promoLacDbModel.FK__areaAssig__areaI__7D439ABD" ManuallyRouted="false" />
         <AssociationConnector Association="promoLacDbModel.FK__notificat__notif__4BAC3F29" ManuallyRouted="false" />
-        <AssociationConnector Association="promoLacDbModel.FK__areaAssig__vendo__7C4F7684" ManuallyRouted="false" />
         <AssociationConnector Association="promoLacDbModel.FK__areaAssig__subUs__0A9D95DB" ManuallyRouted="false" />
-        <AssociationConnector Association="promoLacDbModel.FK__vendor__vendorDe__403A8C7D" ManuallyRouted="false" />
-        <AssociationConnector Association="promoLacDbModel.FK__vendor__vendorAd__3F466844" ManuallyRouted="false" />
         <AssociationConnector Association="promoLacDbModel.FK__packageSt__packa__6754599E" ManuallyRouted="false" />
         <AssociationConnector Association="promoLacDbModel.FK__userPacka__packa__5812160E" ManuallyRouted="false" />
-        <AssociationConnector Association="promoLacDbModel.FK__packageSt__vendo__66603565" ManuallyRouted="false" />
-        <AssociationConnector Association="promoLacDbModel.FK__subUser__subUser__4E88ABD4" ManuallyRouted="false" />
-        <AssociationConnector Association="promoLacDbModel.FK__userPacka__vendo__571DF1D5" ManuallyRouted="false" />
-      </Diagram>
+        <EntityTypeShape EntityType="promoLacDbModel.vendor" Width="1.5" PointX="5.25" PointY="0.75" />
+        <AssociationConnector Association="promoLacDbModel.FK__areaAssig__vendo__7C4F7684" />
+        <AssociationConnector Association="promoLacDbModel.FK__vendor__vendorAd__625A9A57" />
+        <AssociationConnector Association="promoLacDbModel.FK__vendor__vendorPa__634EBE90" />
+        <AssociationConnector Association="promoLacDbModel.FK__packageSt__vendo__66603565" />
+        <AssociationConnector Association="promoLacDbModel.FK__subUser__subUser__4E88ABD4" />
+        <AssociationConnector Association="promoLacDbModel.FK__userPacka__vendo__571DF1D5" />
+        </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>

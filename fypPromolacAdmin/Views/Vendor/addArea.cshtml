@@ -1,0 +1,64 @@
+﻿@model fypPromolacAdmin.Models.vendorViewModel
+
+@{
+    ViewBag.Title = "addArea";
+}
+
+<h2>addArea</h2>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.1.0/chosen.css" rel="stylesheet" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.1.0/chosen.jquery.js"></script>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>vendor</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+
+        <div class="form-group">
+            <div class="col-md-10">
+                @Html.HiddenFor(model => model.vendorUserName, new { htmlAttributes = new { @class = "form-control", @readonly = true } })
+                @Html.HiddenFor(model => model.area_ids, new { htmlAttributes = new { @class = "form-control", @readonly = true } })
+
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.area_vendor, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(x => x.area_vendor
+           , Model.detail.Select(x => new SelectListItem { Text = x.areaName, Value = x.areaId.ToString() }), new { @class = "form-control chosen-select", @id = "sel", @multiple = true })
+                @Html.ValidationMessageFor(model => model.area_vendor, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+<script type="text/javascript">
+
+
+
+    $('.chosen-select').chosen();
+
+
+
+
+</script>

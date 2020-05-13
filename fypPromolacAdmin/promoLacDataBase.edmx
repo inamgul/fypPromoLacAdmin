@@ -69,7 +69,7 @@
           <Key>
             <PropertyRef Name="packagesId" />
           </Key>
-          <Property Name="packagesId" Type="int" Nullable="false" />
+          <Property Name="packagesId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="packageName" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="messagesAllowed" Type="int" Nullable="false" />
           <Property Name="subUsersAllowed" Type="int" Nullable="false" />
@@ -132,14 +132,11 @@
           <Property Name="registerTimestamp" Type="datetime" Nullable="false" />
           <Property Name="vendorUserName" Type="varchar" MaxLength="30" Nullable="false" />
           <Property Name="vendorPassword" Type="varchar" MaxLength="30" Nullable="false" />
-          <Property Name="vendorSex" Type="char" MaxLength="1" Nullable="false" />
           <Property Name="vendorBirthDate" Type="date" Nullable="false" />
           <Property Name="vendorStatus" Type="char" MaxLength="1" Nullable="false" />
-          <Property Name="vendorAdminId" Type="int" Nullable="false" />
-          <Property Name="vendorDealTaken" Type="int" Nullable="false" />
-          <Property Name="latitude" Type="float" Nullable="false" />
-          <Property Name="longitude" Type="float" Nullable="false" />
           <Property Name="isAdmin" Type="varchar" MaxLength="10" />
+          <Property Name="vendorAdminId" Type="int" Nullable="false" />
+          <Property Name="vendorPackageTaken" Type="int" Nullable="false" />
         </EntityType>
         <Association Name="FK__areaAssig__areaI__0B91BA14">
           <End Role="area" Type="Self.area" Multiplicity="1" />
@@ -261,7 +258,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__vendor__vendorAd__3F466844">
+        <Association Name="FK__vendor__vendorAd__625A9A57">
           <End Role="mainAdmin" Type="Self.mainAdmin" Multiplicity="1" />
           <End Role="vendor" Type="Self.vendor" Multiplicity="*" />
           <ReferentialConstraint>
@@ -273,15 +270,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__vendor__vendorDe__403A8C7D">
-          <End Role="deals" Type="Self.deals" Multiplicity="1" />
+        <Association Name="FK__vendor__vendorPa__634EBE90">
+          <End Role="packages" Type="Self.packages" Multiplicity="1" />
           <End Role="vendor" Type="Self.vendor" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="deals">
-              <PropertyRef Name="dealId" />
+            <Principal Role="packages">
+              <PropertyRef Name="packagesId" />
             </Principal>
             <Dependent Role="vendor">
-              <PropertyRef Name="vendorDealTaken" />
+              <PropertyRef Name="vendorPackageTaken" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -338,12 +335,12 @@
             <End Role="vendor" EntitySet="vendor" />
             <End Role="userPackages" EntitySet="userPackages" />
           </AssociationSet>
-          <AssociationSet Name="FK__vendor__vendorAd__3F466844" Association="Self.FK__vendor__vendorAd__3F466844">
+          <AssociationSet Name="FK__vendor__vendorAd__625A9A57" Association="Self.FK__vendor__vendorAd__625A9A57">
             <End Role="mainAdmin" EntitySet="mainAdmin" />
             <End Role="vendor" EntitySet="vendor" />
           </AssociationSet>
-          <AssociationSet Name="FK__vendor__vendorDe__403A8C7D" Association="Self.FK__vendor__vendorDe__403A8C7D">
-            <End Role="deals" EntitySet="deals" />
+          <AssociationSet Name="FK__vendor__vendorPa__634EBE90" Association="Self.FK__vendor__vendorPa__634EBE90">
+            <End Role="packages" EntitySet="packages" />
             <End Role="vendor" EntitySet="vendor" />
           </AssociationSet>
         </EntityContainer>
@@ -371,7 +368,7 @@
           <Property Name="areaId" Type="Int32" Nullable="false" />
           <Property Name="assignedId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <NavigationProperty Name="area" Relationship="Self.FK__areaAssig__areaI__7D439ABD" FromRole="areaAssigned" ToRole="area" />
-          <NavigationProperty Name="vendor" Relationship="Self.FK__areaAssig__vendo__7C4F7684" FromRole="areaAssigned" ToRole="vendor" />
+          <NavigationProperty Name="vendor" Relationship="promoLacDbModel.FK__areaAssig__vendo__7C4F7684" FromRole="areaAssigned" ToRole="vendor" />
         </EntityType>
         <EntityType Name="areaAssignedSUser">
           <Key>
@@ -394,7 +391,6 @@
           <Property Name="price" Type="Int32" Nullable="false" />
           <Property Name="category" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="dealType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="vendors" Relationship="Self.FK__vendor__vendorDe__403A8C7D" FromRole="deals" ToRole="vendor" />
         </EntityType>
         <EntityType Name="mainAdmin">
           <Key>
@@ -408,7 +404,7 @@
           <Property Name="address_" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="password_" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="vendors" Relationship="Self.FK__vendor__vendorAd__3F466844" FromRole="mainAdmin" ToRole="vendor" />
+          <NavigationProperty Name="vendors" Relationship="promoLacDbModel.FK__vendor__vendorAd__625A9A57" FromRole="mainAdmin" ToRole="vendor" />
         </EntityType>
         <EntityType Name="notification">
           <Key>
@@ -433,6 +429,7 @@
           <Property Name="packageDescription" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="packageStatus_" Relationship="Self.FK__packageSt__packa__6754599E" FromRole="packages" ToRole="packageStatus_" />
           <NavigationProperty Name="userPackages" Relationship="Self.FK__userPacka__packa__5812160E" FromRole="packages" ToRole="userPackages" />
+          <NavigationProperty Name="vendors" Relationship="promoLacDbModel.FK__vendor__vendorPa__634EBE90" FromRole="package" ToRole="vendor" />
         </EntityType>
         <EntityType Name="packageStatus_">
           <Key>
@@ -443,7 +440,7 @@
           <Property Name="packageId" Type="Int32" Nullable="false" />
           <Property Name="messagesSent" Type="Int32" Nullable="false" />
           <NavigationProperty Name="package" Relationship="Self.FK__packageSt__packa__6754599E" FromRole="packageStatus_" ToRole="packages" />
-          <NavigationProperty Name="vendor" Relationship="Self.FK__packageSt__vendo__66603565" FromRole="packageStatus_" ToRole="vendor" />
+          <NavigationProperty Name="vendor" Relationship="promoLacDbModel.FK__packageSt__vendo__66603565" FromRole="packageStatus_" ToRole="vendor" />
         </EntityType>
         <EntityType Name="subUser">
           <Key>
@@ -459,7 +456,7 @@
           <Property Name="subUserPassword" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="subUserVendorId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="areaAssignedSUsers" Relationship="Self.FK__areaAssig__subUs__0A9D95DB" FromRole="subUser" ToRole="areaAssignedSUser" />
-          <NavigationProperty Name="vendor" Relationship="Self.FK__subUser__subUser__4E88ABD4" FromRole="subUser" ToRole="vendor" />
+          <NavigationProperty Name="vendor" Relationship="promoLacDbModel.FK__subUser__subUser__4E88ABD4" FromRole="subUser" ToRole="vendor" />
         </EntityType>
         <EntityType Name="sysdiagram">
           <Key>
@@ -480,36 +477,7 @@
           <Property Name="packageId" Type="Int32" Nullable="false" />
           <Property Name="packageStartTime" Type="DateTime" Nullable="false" Precision="3" />
           <NavigationProperty Name="package" Relationship="Self.FK__userPacka__packa__5812160E" FromRole="userPackages" ToRole="packages" />
-          <NavigationProperty Name="vendor" Relationship="Self.FK__userPacka__vendo__571DF1D5" FromRole="userPackages" ToRole="vendor" />
-        </EntityType>
-        <EntityType Name="vendor">
-          <Key>
-            <PropertyRef Name="vendorId" />
-          </Key>
-          <Property Name="vendorId" Type="Int32" Nullable="false" />
-          <Property Name="firstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="lastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="phoneNumber" Type="String" MaxLength="11" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="vendorEmail" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="vendorAddress" Type="String" MaxLength="70" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="vendorCompanyName" Type="String" MaxLength="70" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="registerTimestamp" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="vendorUserName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="vendorPassword" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="vendorSex" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
-          <Property Name="vendorBirthDate" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="vendorStatus" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
-          <Property Name="vendorAdminId" Type="Int32" Nullable="false" />
-          <Property Name="vendorDealTaken" Type="Int32" Nullable="false" />
-          <Property Name="latitude" Type="Double" Nullable="false" />
-          <Property Name="longitude" Type="Double" Nullable="false" />
-          <Property Name="isAdmin" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="areaAssigneds" Relationship="Self.FK__areaAssig__vendo__7C4F7684" FromRole="vendor" ToRole="areaAssigned" />
-          <NavigationProperty Name="deal" Relationship="Self.FK__vendor__vendorDe__403A8C7D" FromRole="vendor" ToRole="deals" />
-          <NavigationProperty Name="mainAdmin" Relationship="Self.FK__vendor__vendorAd__3F466844" FromRole="vendor" ToRole="mainAdmin" />
-          <NavigationProperty Name="packageStatus_" Relationship="Self.FK__packageSt__vendo__66603565" FromRole="vendor" ToRole="packageStatus_" />
-          <NavigationProperty Name="subUsers" Relationship="Self.FK__subUser__subUser__4E88ABD4" FromRole="vendor" ToRole="subUser" />
-          <NavigationProperty Name="userPackages" Relationship="Self.FK__userPacka__vendo__571DF1D5" FromRole="vendor" ToRole="userPackages" />
+          <NavigationProperty Name="vendor" Relationship="promoLacDbModel.FK__userPacka__vendo__571DF1D5" FromRole="userPackage" ToRole="vendor" />
         </EntityType>
         <Association Name="FK__areaAssig__areaI__0B91BA14">
           <End Role="area" Type="Self.area" Multiplicity="1" />
@@ -547,18 +515,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__areaAssig__vendo__7C4F7684">
-          <End Role="vendor" Type="Self.vendor" Multiplicity="1" />
-          <End Role="areaAssigned" Type="Self.areaAssigned" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="vendor">
-              <PropertyRef Name="vendorId" />
-            </Principal>
-            <Dependent Role="areaAssigned">
-              <PropertyRef Name="vendorId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK__areaAssig__subUs__0A9D95DB">
           <End Role="subUser" Type="Self.subUser" Multiplicity="1" />
           <End Role="areaAssignedSUser" Type="Self.areaAssignedSUser" Multiplicity="*" />
@@ -568,30 +524,6 @@
             </Principal>
             <Dependent Role="areaAssignedSUser">
               <PropertyRef Name="subUserId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__vendor__vendorDe__403A8C7D">
-          <End Role="deals" Type="Self.deal" Multiplicity="1" />
-          <End Role="vendor" Type="Self.vendor" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="deals">
-              <PropertyRef Name="dealId" />
-            </Principal>
-            <Dependent Role="vendor">
-              <PropertyRef Name="vendorDealTaken" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__vendor__vendorAd__3F466844">
-          <End Role="mainAdmin" Type="Self.mainAdmin" Multiplicity="1" />
-          <End Role="vendor" Type="Self.vendor" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="mainAdmin">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="vendor">
-              <PropertyRef Name="vendorAdminId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -619,42 +551,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__packageSt__vendo__66603565">
-          <End Role="vendor" Type="Self.vendor" Multiplicity="1" />
-          <End Role="packageStatus_" Type="Self.packageStatus_" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="vendor">
-              <PropertyRef Name="vendorId" />
-            </Principal>
-            <Dependent Role="packageStatus_">
-              <PropertyRef Name="vendorId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__subUser__subUser__4E88ABD4">
-          <End Role="vendor" Type="Self.vendor" Multiplicity="1" />
-          <End Role="subUser" Type="Self.subUser" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="vendor">
-              <PropertyRef Name="vendorId" />
-            </Principal>
-            <Dependent Role="subUser">
-              <PropertyRef Name="subUserVendorId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__userPacka__vendo__571DF1D5">
-          <End Role="vendor" Type="Self.vendor" Multiplicity="1" />
-          <End Role="userPackages" Type="Self.userPackage" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="vendor">
-              <PropertyRef Name="vendorId" />
-            </Principal>
-            <Dependent Role="userPackages">
-              <PropertyRef Name="vendorId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityContainer Name="promoLacDbEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="areas" EntityType="Self.area" />
           <EntitySet Name="areaAssigneds" EntityType="Self.areaAssigned" />
@@ -667,7 +563,6 @@
           <EntitySet Name="subUsers" EntityType="Self.subUser" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
           <EntitySet Name="userPackages" EntityType="Self.userPackage" />
-          <EntitySet Name="vendors" EntityType="Self.vendor" />
           <AssociationSet Name="FK__areaAssig__areaI__0B91BA14" Association="Self.FK__areaAssig__areaI__0B91BA14">
             <End Role="area" EntitySet="areas" />
             <End Role="areaAssignedSUser" EntitySet="areaAssignedSUsers" />
@@ -680,21 +575,9 @@
             <End Role="area" EntitySet="areas" />
             <End Role="notifications" EntitySet="notifications" />
           </AssociationSet>
-          <AssociationSet Name="FK__areaAssig__vendo__7C4F7684" Association="Self.FK__areaAssig__vendo__7C4F7684">
-            <End Role="vendor" EntitySet="vendors" />
-            <End Role="areaAssigned" EntitySet="areaAssigneds" />
-          </AssociationSet>
           <AssociationSet Name="FK__areaAssig__subUs__0A9D95DB" Association="Self.FK__areaAssig__subUs__0A9D95DB">
             <End Role="subUser" EntitySet="subUsers" />
             <End Role="areaAssignedSUser" EntitySet="areaAssignedSUsers" />
-          </AssociationSet>
-          <AssociationSet Name="FK__vendor__vendorDe__403A8C7D" Association="Self.FK__vendor__vendorDe__403A8C7D">
-            <End Role="deals" EntitySet="deals" />
-            <End Role="vendor" EntitySet="vendors" />
-          </AssociationSet>
-          <AssociationSet Name="FK__vendor__vendorAd__3F466844" Association="Self.FK__vendor__vendorAd__3F466844">
-            <End Role="mainAdmin" EntitySet="mainAdmins" />
-            <End Role="vendor" EntitySet="vendors" />
           </AssociationSet>
           <AssociationSet Name="FK__packageSt__packa__6754599E" Association="Self.FK__packageSt__packa__6754599E">
             <End Role="packages" EntitySet="packages" />
@@ -704,20 +587,131 @@
             <End Role="packages" EntitySet="packages" />
             <End Role="userPackages" EntitySet="userPackages" />
           </AssociationSet>
-          <AssociationSet Name="FK__packageSt__vendo__66603565" Association="Self.FK__packageSt__vendo__66603565">
+          <EntitySet Name="vendors" EntityType="promoLacDbModel.vendor" />
+          <AssociationSet Name="FK__areaAssig__vendo__7C4F7684" Association="promoLacDbModel.FK__areaAssig__vendo__7C4F7684">
+            <End Role="vendor" EntitySet="vendors" />
+            <End Role="areaAssigned" EntitySet="areaAssigneds" />
+          </AssociationSet>
+          <AssociationSet Name="FK__vendor__vendorAd__625A9A57" Association="promoLacDbModel.FK__vendor__vendorAd__625A9A57">
+            <End Role="mainAdmin" EntitySet="mainAdmins" />
+            <End Role="vendor" EntitySet="vendors" />
+          </AssociationSet>
+          <AssociationSet Name="FK__vendor__vendorPa__634EBE90" Association="promoLacDbModel.FK__vendor__vendorPa__634EBE90">
+            <End Role="package" EntitySet="packages" />
+            <End Role="vendor" EntitySet="vendors" />
+          </AssociationSet>
+          <AssociationSet Name="FK__packageSt__vendo__66603565" Association="promoLacDbModel.FK__packageSt__vendo__66603565">
             <End Role="vendor" EntitySet="vendors" />
             <End Role="packageStatus_" EntitySet="packageStatus_" />
           </AssociationSet>
-          <AssociationSet Name="FK__subUser__subUser__4E88ABD4" Association="Self.FK__subUser__subUser__4E88ABD4">
+          <AssociationSet Name="FK__subUser__subUser__4E88ABD4" Association="promoLacDbModel.FK__subUser__subUser__4E88ABD4">
             <End Role="vendor" EntitySet="vendors" />
             <End Role="subUser" EntitySet="subUsers" />
           </AssociationSet>
-          <AssociationSet Name="FK__userPacka__vendo__571DF1D5" Association="Self.FK__userPacka__vendo__571DF1D5">
+          <AssociationSet Name="FK__userPacka__vendo__571DF1D5" Association="promoLacDbModel.FK__userPacka__vendo__571DF1D5">
             <End Role="vendor" EntitySet="vendors" />
-            <End Role="userPackages" EntitySet="userPackages" />
+            <End Role="userPackage" EntitySet="userPackages" />
           </AssociationSet>
-        </EntityContainer>
-      </Schema>
+          </EntityContainer>
+        <EntityType Name="vendor">
+          <Key>
+            <PropertyRef Name="vendorId" />
+          </Key>
+          <Property Name="vendorId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="firstName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="lastName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="phoneNumber" Type="String" Nullable="false" MaxLength="11" FixedLength="false" Unicode="false" />
+          <Property Name="vendorEmail" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="vendorAddress" Type="String" Nullable="false" MaxLength="70" FixedLength="false" Unicode="false" />
+          <Property Name="vendorCompanyName" Type="String" Nullable="false" MaxLength="70" FixedLength="false" Unicode="false" />
+          <Property Name="registerTimestamp" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="vendorUserName" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="vendorPassword" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="vendorBirthDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="vendorStatus" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="isAdmin" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="vendorAdminId" Type="Int32" Nullable="false" />
+          <Property Name="vendorPackageTaken" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="areaAssigneds" Relationship="promoLacDbModel.FK__areaAssig__vendo__7C4F7684" FromRole="vendor" ToRole="areaAssigned" />
+          <NavigationProperty Name="mainAdmin" Relationship="promoLacDbModel.FK__vendor__vendorAd__625A9A57" FromRole="vendor" ToRole="mainAdmin" />
+          <NavigationProperty Name="package" Relationship="promoLacDbModel.FK__vendor__vendorPa__634EBE90" FromRole="vendor" ToRole="package" />
+          <NavigationProperty Name="packageStatus_" Relationship="promoLacDbModel.FK__packageSt__vendo__66603565" FromRole="vendor" ToRole="packageStatus_" />
+          <NavigationProperty Name="subUsers" Relationship="promoLacDbModel.FK__subUser__subUser__4E88ABD4" FromRole="vendor" ToRole="subUser" />
+          <NavigationProperty Name="userPackages" Relationship="promoLacDbModel.FK__userPacka__vendo__571DF1D5" FromRole="vendor" ToRole="userPackage" />
+        </EntityType>
+        <Association Name="FK__areaAssig__vendo__7C4F7684">
+          <End Type="promoLacDbModel.vendor" Role="vendor" Multiplicity="1" />
+          <End Type="promoLacDbModel.areaAssigned" Role="areaAssigned" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="vendor">
+              <PropertyRef Name="vendorId" />
+            </Principal>
+            <Dependent Role="areaAssigned">
+              <PropertyRef Name="vendorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__vendor__vendorAd__625A9A57">
+          <End Type="promoLacDbModel.mainAdmin" Role="mainAdmin" Multiplicity="1" />
+          <End Type="promoLacDbModel.vendor" Role="vendor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="mainAdmin">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="vendor">
+              <PropertyRef Name="vendorAdminId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__vendor__vendorPa__634EBE90">
+          <End Type="promoLacDbModel.package" Role="package" Multiplicity="1" />
+          <End Type="promoLacDbModel.vendor" Role="vendor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="package">
+              <PropertyRef Name="packagesId" />
+            </Principal>
+            <Dependent Role="vendor">
+              <PropertyRef Name="vendorPackageTaken" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__packageSt__vendo__66603565">
+          <End Type="promoLacDbModel.vendor" Role="vendor" Multiplicity="1" />
+          <End Type="promoLacDbModel.packageStatus_" Role="packageStatus_" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="vendor">
+              <PropertyRef Name="vendorId" />
+            </Principal>
+            <Dependent Role="packageStatus_">
+              <PropertyRef Name="vendorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__subUser__subUser__4E88ABD4">
+          <End Type="promoLacDbModel.vendor" Role="vendor" Multiplicity="1" />
+          <End Type="promoLacDbModel.subUser" Role="subUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="vendor">
+              <PropertyRef Name="vendorId" />
+            </Principal>
+            <Dependent Role="subUser">
+              <PropertyRef Name="subUserVendorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__userPacka__vendo__571DF1D5">
+          <End Type="promoLacDbModel.vendor" Role="vendor" Multiplicity="1" />
+          <End Type="promoLacDbModel.userPackage" Role="userPackage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="vendor">
+              <PropertyRef Name="vendorId" />
+            </Principal>
+            <Dependent Role="userPackage">
+              <PropertyRef Name="vendorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -846,24 +840,21 @@
           <EntitySetMapping Name="vendors">
             <EntityTypeMapping TypeName="promoLacDbModel.vendor">
               <MappingFragment StoreEntitySet="vendor">
-                <ScalarProperty Name="vendorId" ColumnName="vendorId" />
-                <ScalarProperty Name="firstName" ColumnName="firstName" />
-                <ScalarProperty Name="lastName" ColumnName="lastName" />
-                <ScalarProperty Name="phoneNumber" ColumnName="phoneNumber" />
-                <ScalarProperty Name="vendorEmail" ColumnName="vendorEmail" />
-                <ScalarProperty Name="vendorAddress" ColumnName="vendorAddress" />
-                <ScalarProperty Name="vendorCompanyName" ColumnName="vendorCompanyName" />
-                <ScalarProperty Name="registerTimestamp" ColumnName="registerTimestamp" />
-                <ScalarProperty Name="vendorUserName" ColumnName="vendorUserName" />
-                <ScalarProperty Name="vendorPassword" ColumnName="vendorPassword" />
-                <ScalarProperty Name="vendorSex" ColumnName="vendorSex" />
-                <ScalarProperty Name="vendorBirthDate" ColumnName="vendorBirthDate" />
-                <ScalarProperty Name="vendorStatus" ColumnName="vendorStatus" />
+                <ScalarProperty Name="vendorPackageTaken" ColumnName="vendorPackageTaken" />
                 <ScalarProperty Name="vendorAdminId" ColumnName="vendorAdminId" />
-                <ScalarProperty Name="vendorDealTaken" ColumnName="vendorDealTaken" />
-                <ScalarProperty Name="latitude" ColumnName="latitude" />
-                <ScalarProperty Name="longitude" ColumnName="longitude" />
                 <ScalarProperty Name="isAdmin" ColumnName="isAdmin" />
+                <ScalarProperty Name="vendorStatus" ColumnName="vendorStatus" />
+                <ScalarProperty Name="vendorBirthDate" ColumnName="vendorBirthDate" />
+                <ScalarProperty Name="vendorPassword" ColumnName="vendorPassword" />
+                <ScalarProperty Name="vendorUserName" ColumnName="vendorUserName" />
+                <ScalarProperty Name="registerTimestamp" ColumnName="registerTimestamp" />
+                <ScalarProperty Name="vendorCompanyName" ColumnName="vendorCompanyName" />
+                <ScalarProperty Name="vendorAddress" ColumnName="vendorAddress" />
+                <ScalarProperty Name="vendorEmail" ColumnName="vendorEmail" />
+                <ScalarProperty Name="phoneNumber" ColumnName="phoneNumber" />
+                <ScalarProperty Name="lastName" ColumnName="lastName" />
+                <ScalarProperty Name="firstName" ColumnName="firstName" />
+                <ScalarProperty Name="vendorId" ColumnName="vendorId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

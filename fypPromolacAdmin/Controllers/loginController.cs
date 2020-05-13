@@ -16,26 +16,16 @@ namespace fypPromolacAdmin.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult login(vendorViewModel model)
+        public ActionResult login(adminModel model)
         {
             using (var context = new promoLacDbEntities())
             {
-                bool isvalidVendor = context.vendors.Any(x => x.vendorUserName == model.vendorUserName && x.vendorPassword == model.vendorPassword);
+                bool isvalidVendor = context.mainAdmins.Any(x => x.username == model.username && x.password_ == model.password_);
                 if (isvalidVendor)
                 {
-                    FormsAuthentication.SetAuthCookie(model.vendorUserName, false);
-                    return RedirectToAction("controlPanel", "controlPanel");
+                    FormsAuthentication.SetAuthCookie(model.username, false);
+                    return RedirectToAction("addVendor", "Vendor");
                 }
-                else
-                {
-                    bool isvalidSubUser = context.subUsers.Any(x => x.subUserUserName == model.vendorUserName && x.subUserPassword == model.vendorPassword);
-                    if (isvalidSubUser)
-                    {
-                        FormsAuthentication.SetAuthCookie(model.vendorUserName, false);
-                        return RedirectToAction("controlPanel", "controlPanel");
-                    }
-                }
-
                 ModelState.AddModelError("", "Invalid User Name and Password");
 
             }

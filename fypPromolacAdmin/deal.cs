@@ -14,20 +14,11 @@ namespace fypPromolacAdmin
     
     public partial class deal
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public deal()
-        {
-            this.vendors = new HashSet<vendor>();
-        }
-    
         public int dealId { get; set; }
         public string dealName { get; set; }
         public string dealDescription { get; set; }
         public int price { get; set; }
         public string category { get; set; }
         public string dealType { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<vendor> vendors { get; set; }
     }
 }

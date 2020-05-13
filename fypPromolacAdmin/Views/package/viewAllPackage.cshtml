@@ -1,0 +1,65 @@
+﻿@model IEnumerable<fypPromolacAdmin.Models.packageModel>
+
+@{
+    ViewBag.Title = "viewAllPackage";
+}
+
+<h2>viewAllPackage</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <thead>
+        <tr>
+
+            <th>
+                @Html.DisplayNameFor(model => model.packageName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.messagesAllowed)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.subUsersAllowed)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.packageDurationDays)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.packageDescription)
+            </th>
+            <th></th>
+        </tr>
+        </thead>
+        @foreach (var item in Model)
+        {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.packageName)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.messagesAllowed)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.subUsersAllowed)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.packageDurationDays)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.packageDescription)
+    </td>
+    <td>
+       
+        @Html.ActionLink("Edit", "editPackage", new { id = item.packagesId })
+
+    </td>
+    
+</tr>
+        }
+
+</table>
+<button>@Html.ActionLink("Create", "createPackage")</button>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

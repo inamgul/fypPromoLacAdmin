@@ -19,6 +19,7 @@ namespace fypPromolacAdmin
         {
             this.packageStatus_ = new HashSet<packageStatus_>();
             this.userPackages = new HashSet<userPackage>();
+            this.vendors = new HashSet<vendor>();
         }
     
         public int packagesId { get; set; }
@@ -32,5 +33,7 @@ namespace fypPromolacAdmin
         public virtual ICollection<packageStatus_> packageStatus_ { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<userPackage> userPackages { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<vendor> vendors { get; set; }
     }
 }

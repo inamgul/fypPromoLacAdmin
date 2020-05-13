@@ -140,6 +140,7 @@
     </Compile>
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\loginController.cs" />
+    <Compile Include="Controllers\packageController.cs" />
     <Compile Include="Controllers\VendorController.cs" />
     <Compile Include="deal.cs">
       <DependentUpon>promoLacDataBase.tt</DependentUpon>
@@ -150,8 +151,10 @@
     <Compile Include="mainAdmin.cs">
       <DependentUpon>promoLacDataBase.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\adminModel.cs" />
     <Compile Include="Models\areaAssignedModel.cs" />
     <Compile Include="Models\areaModel.cs" />
+    <Compile Include="Models\packageModel.cs" />
     <Compile Include="Models\vendorViewModel.cs" />
     <Compile Include="notification.cs">
       <DependentUpon>promoLacDataBase.tt</DependentUpon>
@@ -249,6 +252,12 @@
     <Content Include="Views\Vendor\addVendor.cshtml" />
     <Content Include="Views\Vendor\addCompleteVendorInfo.cshtml" />
     <Content Include="Views\Vendor\viewAllVendors.cshtml" />
+    <Content Include="Views\Vendor\EditVendor.cshtml" />
+    <Content Include="Views\package\viewAllPackage.cshtml" />
+    <Content Include="Views\package\editPackage.cshtml" />
+    <Content Include="Views\package\createPackage.cshtml" />
+    <Content Include="Views\Vendor\addArea.cshtml" />
+    <Content Include="Views\Vendor\updateVendorPackage.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

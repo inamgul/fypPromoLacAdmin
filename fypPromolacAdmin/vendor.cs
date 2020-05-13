@@ -33,19 +33,16 @@ namespace fypPromolacAdmin
         public System.DateTime registerTimestamp { get; set; }
         public string vendorUserName { get; set; }
         public string vendorPassword { get; set; }
-        public string vendorSex { get; set; }
         public System.DateTime vendorBirthDate { get; set; }
         public string vendorStatus { get; set; }
-        public int vendorAdminId { get; set; }
-        public int vendorDealTaken { get; set; }
-        public double latitude { get; set; }
-        public double longitude { get; set; }
         public string isAdmin { get; set; }
+        public int vendorAdminId { get; set; }
+        public int vendorPackageTaken { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<areaAssigned> areaAssigneds { get; set; }
-        public virtual deal deal { get; set; }
         public virtual mainAdmin mainAdmin { get; set; }
+        public virtual package package { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<packageStatus_> packageStatus_ { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

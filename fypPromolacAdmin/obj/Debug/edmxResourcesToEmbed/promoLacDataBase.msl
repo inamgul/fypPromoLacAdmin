@@ -124,24 +124,21 @@
     <EntitySetMapping Name="vendors">
       <EntityTypeMapping TypeName="promoLacDbModel.vendor">
         <MappingFragment StoreEntitySet="vendor">
-          <ScalarProperty Name="vendorId" ColumnName="vendorId" />
-          <ScalarProperty Name="firstName" ColumnName="firstName" />
-          <ScalarProperty Name="lastName" ColumnName="lastName" />
-          <ScalarProperty Name="phoneNumber" ColumnName="phoneNumber" />
-          <ScalarProperty Name="vendorEmail" ColumnName="vendorEmail" />
-          <ScalarProperty Name="vendorAddress" ColumnName="vendorAddress" />
-          <ScalarProperty Name="vendorCompanyName" ColumnName="vendorCompanyName" />
-          <ScalarProperty Name="registerTimestamp" ColumnName="registerTimestamp" />
-          <ScalarProperty Name="vendorUserName" ColumnName="vendorUserName" />
-          <ScalarProperty Name="vendorPassword" ColumnName="vendorPassword" />
-          <ScalarProperty Name="vendorSex" ColumnName="vendorSex" />
-          <ScalarProperty Name="vendorBirthDate" ColumnName="vendorBirthDate" />
-          <ScalarProperty Name="vendorStatus" ColumnName="vendorStatus" />
+          <ScalarProperty Name="vendorPackageTaken" ColumnName="vendorPackageTaken" />
           <ScalarProperty Name="vendorAdminId" ColumnName="vendorAdminId" />
-          <ScalarProperty Name="vendorDealTaken" ColumnName="vendorDealTaken" />
-          <ScalarProperty Name="latitude" ColumnName="latitude" />
-          <ScalarProperty Name="longitude" ColumnName="longitude" />
           <ScalarProperty Name="isAdmin" ColumnName="isAdmin" />
+          <ScalarProperty Name="vendorStatus" ColumnName="vendorStatus" />
+          <ScalarProperty Name="vendorBirthDate" ColumnName="vendorBirthDate" />
+          <ScalarProperty Name="vendorPassword" ColumnName="vendorPassword" />
+          <ScalarProperty Name="vendorUserName" ColumnName="vendorUserName" />
+          <ScalarProperty Name="registerTimestamp" ColumnName="registerTimestamp" />
+          <ScalarProperty Name="vendorCompanyName" ColumnName="vendorCompanyName" />
+          <ScalarProperty Name="vendorAddress" ColumnName="vendorAddress" />
+          <ScalarProperty Name="vendorEmail" ColumnName="vendorEmail" />
+          <ScalarProperty Name="phoneNumber" ColumnName="phoneNumber" />
+          <ScalarProperty Name="lastName" ColumnName="lastName" />
+          <ScalarProperty Name="firstName" ColumnName="firstName" />
+          <ScalarProperty Name="vendorId" ColumnName="vendorId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
